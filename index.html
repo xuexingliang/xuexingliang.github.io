@@ -45,6 +45,41 @@
         
             <div class="post-item">
                 <h1>
+                    <a href="//index.html">
+                        
+                    </a>
+                </h1>
+                <div class="create">
+                    <span>创建于</span>
+                    
+                        <time datetime="2019-06-12T07:45:19.943Z">
+                            2019-06-12
+                        </time>
+                    
+                    
+                </div>
+                
+                    <h2 id="解决css样式中“高度塌陷“”的方法"><a href="#解决css样式中“高度塌陷“”的方法" class="headerlink" title="解决css样式中“高度塌陷“”的方法"></a>解决css样式中“高度塌陷“”的方法</h2><p>什么是高度塌陷？<br>在文档流中，父元素的高度默认是被子元素撑开的，也就是子元素多高，父元素就多高。但是当子元素设置浮动之后，子元素会完全脱离文档流，此时将会导致子元素无法撑起父元素的高度，导致父元素的高度塌陷。<br>&lt;!DOCTYPE html&gt;</p>
+<html lang="en"><br><head><meta name="generator" content="Hexo 3.8.0"><br>    <meta charset="UTF-8"><br>    <title>高度塌陷的问题</title><br>    <style type="text/css"><br>        .box1{<br>            background-color: yellow;<br>            border: 10px red solid;<br>        }<br>        .box2{<br>            width:200px;<br>            height:200px;<br>            background-color: yellowgreen;<br>            float:left;<br><br>        }<br>        .box3{<br>            width:300px;<br>            height:300px;<br>            background-color: skyblue;<br><br>        }<br>    </style><br></head><br><body><br><div class="box1"><br>    <div class="box2"></div><br></div><br><div class="box3"></div><br></body><br></html>
+
+<p>1.可以将父元素的高度写死，以避免塌陷的问题的出现（但是，一旦高度写死，父元素的高度将不能自动适用于子元素的高度，所以这种方案不建议使用）<br>修改box1样式<br>.box1{<br>            height: 200px;<br>            width:200px;<br>            background-color: yellow;<br>            border: 10px red solid;<br>        }<br>2.将父元素也设置浮动(使用这种方式开启，虽然可以撑开父元素，但是会导致父元素的宽度丢失而且使用这种方式也会导致下边的元素向上移)<br>修改box1样式<br>.box1{<br>            background-color: yellow;<br>            border: 10px red solid;<br>            float: left;<br>        }<br>3.设置元素为inline-block(可以解决塌陷问题，但会导致宽度丢失，不推荐使用这种方式);<br>修改box1样式<br>.box1{<br>            background-color: yellow;<br>            border: 10px red solid;<br>            display: inline-block;<br>        }<br>4.将元素的overflow设置为一个非visible的值(副作用最小的方式)<br>修改box1样式<br>.box1{<br>            background-color: yellow;<br>            border: 10px red solid;<br>            overflow: auto;/<em>或者hidden</em>/<br>            zoom:1;/<em>兼容 IE6</em>/<br>        }</p>
+<ol start="5">
+<li>可以直接在高度塌陷的父元素的最后，添加一个空白的div(由于这个div并没有浮动，所以它是可以撑开父元素的高度的然后再对其进行清除浮动，这样可以同过这个空白的div来撑开父元素的高度基本没有副作用，缺点：使用这种方式虽然可以解决问题，但是会在页面中添加多余的结构。)<br>将class为box3的div改为box1的子元素然后修改.box3样式（只针对本解决方式）<br>.box3{<pre><code>clear:both;
+}
+</code></pre></li>
+<li>通过after伪类向高度塌陷的父元素的最后添加一个空白的块元素，然后对其进行清除浮动(最推荐使用的方式，几乎没有副作用)<br>修改box1样式<br>.box1:after{<br>content:””;<br>display:block;<br>clear:both;<br>}<br>.box1{<br> zoom:1<br>}</li>
+</ol>
+
+                
+                <div class="readmore">
+                    <a href="//index.html">
+                        阅读更多
+                    </a>
+                </div>
+            </div>
+        
+            <div class="post-item">
+                <h1>
                     <a href="/本站的测试文章/index.html">
                         本站的测试文章
                     </a>
@@ -173,7 +208,7 @@
 <aside id="acchives">
     <h2>归档</h2>
     
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
     
 </aside>
 
